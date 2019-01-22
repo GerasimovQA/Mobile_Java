@@ -153,7 +153,7 @@ public class SnapchatPage extends GlobalPage {
         Response response =
                 given().log().all().
                         contentType(ContentType.JSON).
-                        baseUri("https://doc.lionsdigital.pro/passport/_runstats").
+                        baseUri("https://your site/passport/_runstats").
                         when().
                         get().
                         then().extract().response();

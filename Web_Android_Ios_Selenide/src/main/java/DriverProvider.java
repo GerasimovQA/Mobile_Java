@@ -51,13 +51,6 @@ public class DriverProvider implements WebDriverProvider {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "Web_Chrome":
-//                Configuration configuration = new Configuration();
-//                Configuration.baseUrl = "google.com";
-//                Configuration.timeout = 20000;
-//                Configuration.browser = "firefox";
-//                driver = (WebDriver) new SelenideDriver(config);
-                break;
             default:
                 throw new AssertionError("This platform doesn't exist");
         }

@@ -13,12 +13,6 @@ public class BaseTest {
             Configuration.baseUrl = "http://www.google.com";
             Configuration.timeout = 20000;
             Configuration.browser = "safari";
-
-//            System.out.println(ConfigProperties.getTestProperty("platform"));
-//            System.out.println(Configuration.browser);
-//            System.out.println(Configuration.baseUrl);
-//            System.out.println(Configuration.timeout);
-//            Configuration.browser = DriverProvider.class.getName();
             open("/");
             sleep(2000);
         }

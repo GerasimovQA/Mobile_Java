@@ -29,7 +29,7 @@ public class DriverProvider implements WebDriverProvider {
                 options.setPlatformName("iOS");
                 options.setDeviceName("iPhone 11");
                 options.setPlatformVersion("14.1");
-                options.setApp("/Users/alekseigerasimov/1/UIKitCatalog.app");
+                options.setApp("/Users/alekseigerasimov/Mobile/Web_Android_Ios_Selenide/src/main/resources/UIKitCatalog.app");
                 try {
                     driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
                 } catch (MalformedURLException e) {

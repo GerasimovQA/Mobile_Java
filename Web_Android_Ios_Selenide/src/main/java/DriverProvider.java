@@ -22,7 +22,7 @@ public class DriverProvider implements WebDriverProvider {
         WebDriver driver = null;
         String platform = ConfigProperties.getTestProperty("platform");
         switch (platform) {
-            case "IOS":
+            case "IOS_SIMULATED":
                 XCUITestOptions options = new XCUITestOptions();
                 options.merge(capabilities);
                 options.setAutomationName("XCUITest");
@@ -36,17 +36,50 @@ public class DriverProvider implements WebDriverProvider {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "ANDROID":
+            case "IOS_REAL":
+                XCUITestOptions optionsReal = new XCUITestOptions();
+                optionsReal.merge(capabilities);
+                optionsReal.setCapability("xcodeOrgId","<Team ID>");
+                optionsReal.setCapability("xcodeSigningId","iPhone Developer");
+                optionsReal.setAutomationName("XCUITest");
+                optionsReal.setPlatformName("iOS");
+                optionsReal.setDeviceName("iPhone Xr");
+                optionsReal.setPlatformVersion("15.5");
+                optionsReal.setApp("/Users/alekseigerasimov/Mobile/Web_Android_Ios_Selenide/src/main/resources/UIKitCatalog.app");
+                try {
+                    driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), optionsReal);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "ANDROID_SIMULATED":
                 UiAutomator2Options optionsAndroid = new UiAutomator2Options();
                 optionsAndroid.merge(capabilities);
                 optionsAndroid.setPlatformName("Android");
                 optionsAndroid.setDeviceName("AndroidTestDevice");
                 optionsAndroid.setPlatformVersion("7.0");
                 optionsAndroid.setAutomationName("Appium");
-                optionsAndroid.setAppPackage("com.android.contacts");
-                optionsAndroid.setAppActivity("com.android.contacts.activities.PeopleActivity");
+                optionsAndroid.setApp("/Users/alekseigerasimov/Mobile/Web_Android_Ios_Selenide/src/main/resources/tor-browser-11.0.15-android-x86-multi.apk");
+                optionsAndroid.setAppPackage("org.torproject.torbrowser");
+                optionsAndroid.setAppActivity("org.mozilla.fenix.HomeActivity");
                 try {
                     driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), optionsAndroid);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "ANDROID_REAL":
+                UiAutomator2Options optionsAndroidReal = new UiAutomator2Options();
+                optionsAndroidReal.merge(capabilities);
+                optionsAndroidReal.setPlatformName("Android");
+                optionsAndroidReal.setDeviceName("AndroidTestDevice");
+                optionsAndroidReal.setPlatformVersion("7.0");
+                optionsAndroidReal.setAutomationName("Appium");
+                optionsAndroidReal.setApp("/Users/alekseigerasimov/Mobile/Web_Android_Ios_Selenide/src/main/resources/tor-browser-11.0.15-android-armv7-multi.apk");
+                optionsAndroidReal.setAppPackage("org.torproject.torbrowser");
+                optionsAndroidReal.setAppActivity("org.mozilla.fenix.HomeActivity");
+                try {
+                    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), optionsAndroidReal);
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }

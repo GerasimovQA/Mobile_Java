@@ -13,11 +13,10 @@ public class Web_Ios_Android_Test extends BaseTest{
 
     @Test
     public void test () {
-//        swipe();
-        System.out.println(page.buttonPageControl.getText());
-        page.buttonPageControl.click();
+        clickElement(page.buttonPageControl);
 
-        System.out.println(page.buttonUIKitCatalog.getText());
-        page.buttonUIKitCatalog.click();
+        swipeScreen(Direction.LEFT);
+        swipeScreen(Direction.RIGHT);
+        clickElement(page.buttonUIKitCatalog);
     }
 }
